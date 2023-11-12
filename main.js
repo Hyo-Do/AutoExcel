@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
 const ExcelJS = require("exceljs");
+const fs = require("fs");
 
 let mainWindow;
 
@@ -62,12 +63,17 @@ ipcMain.on("execute", async (event, arg) => {
   const filePath = filePaths[0];
   const { dir, name, ext } = path.parse(filePath);
 
+  const sourceFilePath = path.join(filePath);
+  const destFilePath = path.join(dir, "수정본__" + name + ext);
+
+  fs.copyFileSync(sourceFilePath, destFilePath);
+
   const workbook = new ExcelJS.Workbook();
   await workbook.xlsx.readFile(filePath, { encoding: "utf-8" });
   const worksheet = workbook.getWorksheet("월간점검DC체크리스트");
-  
+
   const targetRowNumbers = [
-    ...getRangeArray(8, 15),
+    ...getRangeArray(9, 15),
     ...getRangeArray(49, 55),
     ...getRangeArray(89, 95),
     ...getRangeArray(129, 135),
@@ -88,8 +94,5 @@ ipcMain.on("execute", async (event, arg) => {
     k.value = Math.round(getRandomValue(iBase, iOffset) * 10) / 10;
   });
 
-  const resFilePath = path.join(dir, name + "_수정본" + ext);
-  await workbook.xlsx.writeFile(resFilePath);
-
-  return resFilePath;
+  await workbook.xlsx.writeFile(destFilePath);
 });

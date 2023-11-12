@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Hyo-Do/AutoExcel#readme",
   "dependencies": {
     "electron": "^27.0.4",
-    "exceljs": "^4.4.0"
+    "exceljs": "^4.4.0",
+    "fs": "0.0.1-security"
   }
 }
