@@ -1,18 +1,24 @@
 const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
+const ExcelJS = require("exceljs");
 
 let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 350,
+    height: 380,
+    resizable: false,
+    fullscreen: false,
+    fullscreenable: false,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
   });
 
   mainWindow.loadFile("index.html");
+  mainWindow.setMenu(null);
+  //   mainWindow.webContents.openDevTools({ mode: "detach" });
 
   mainWindow.on("closed", function () {
     mainWindow = null;
@@ -31,15 +37,59 @@ app.on("window-all-closed", function () {
   if (process.platform !== "darwin") app.quit();
 });
 
-ipcMain.on("execute", (event, arg) => {
-    console.log(">> start")
-    console.log(`arg: [${arg.val1}, ${arg.val2}]`)
-    const filePath = dialog.showOpenDialogSync({
-        properties: ['openFile'],
-        filters: [{ name: 'Excel Files', extensions: ['xlsx'] }],
-    });
-    console.log(filePath);
+/** MAIN PROCESS */
+const getRangeArray = (start, end) => Array.from({ length: end + 1 - start }, (_, index) => start + index);
 
+function getRandomValue(base, offset) {
+  let randomOffset = Math.random() * offset;
+  randomOffset = randomOffset > offset * 0.6 ? Math.random() * randomOffset : randomOffset;
+  randomOffset = Math.random() < 0.5 ? -randomOffset : randomOffset;
+  return base + randomOffset;
+}
 
-    console.log(">> end");
+ipcMain.on("execute", async (event, arg) => {
+  const vBase = arg.val1,
+    vOffset = arg.val2,
+    iBase = arg.val3,
+    iOffset = arg.val4;
+
+  const filePaths = dialog.showOpenDialogSync({
+    properties: ["openFile"],
+    filters: [{ name: "Excel Files", extensions: ["xlsx"] }],
+  });
+
+  if (!filePaths || filePaths.length === 0) return;
+  const filePath = filePaths[0];
+  const { dir, name, ext } = path.parse(filePath);
+
+  const workbook = new ExcelJS.Workbook();
+  await workbook.xlsx.readFile(filePath, { encoding: "utf-8" });
+  const worksheet = workbook.getWorksheet("월간점검DC체크리스트");
+  
+  const targetRowNumbers = [
+    ...getRangeArray(8, 15),
+    ...getRangeArray(49, 55),
+    ...getRangeArray(89, 95),
+    ...getRangeArray(129, 135),
+    ...getRangeArray(169, 175),
+    ...getRangeArray(209, 215),
+    ...getRangeArray(249, 255),
+    ...getRangeArray(249, 255),
+    ...getRangeArray(289, 295),
+    ...getRangeArray(329, 335),
+    ...getRangeArray(369, 372),
+  ];
+
+  targetRowNumbers.forEach((rowNumber) => {
+    const j = worksheet.getCell("J" + rowNumber);
+    j.value = Math.round(getRandomValue(vBase, vOffset));
+
+    const k = worksheet.getCell("K" + rowNumber);
+    k.value = Math.round(getRandomValue(iBase, iOffset) * 10) / 10;
+  });
+
+  const resFilePath = path.join(dir, name + "_수정본" + ext);
+  await workbook.xlsx.writeFile(resFilePath);
+
+  return resFilePath;
 });

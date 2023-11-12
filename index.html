@@ -3,15 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Electron Excel Editor</title>
+    <title>Excel Auto Editor</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <button onclick="editExcel()">Edit Excel</button>
-
-    <script>
-      function editExcel() {
-        window.ipc.send("execute", {val1: 1, val2: 20.2});
-      }
-    </script>
+    <div class="app">
+      <div class="title">엑셀 자동 편집기</div>
+      <div class="input-form">
+        <div class="input-row">
+          <div class="input-label">전압 기준</div>
+          <input class="number-input" type="number" placeholder="640" value="640" />
+        </div>
+        <div class="input-row">
+          <div class="input-label">전압 오차</div>
+          <input class="number-input" type="number" placeholder="5" value="5" />
+        </div>
+        <div></div>
+        <div class="input-row">
+          <div class="input-label">전류 기준</div>
+          <input class="number-input" type="number" placeholder="6.5" value="6.5" />
+        </div>
+        <div class="input-row">
+          <div class="input-label">전류 오차</div>
+          <input class="number-input" type="number" placeholder="0.3" value="0.4" />
+        </div>
+      </div>
+      <div class="execute-row">
+        <button class="execute-btn" onclick="editExcel()">실행</button>
+      </div>
+    </div>
   </body>
+  <script>
+    function editExcel() {
+      const inputList = document.getElementsByClassName("number-input");
+      const _val1 = parseFloat(inputList[0].value) ?? 0,
+            _val2 = parseFloat(inputList[1].value) ?? 0,
+            _val3 = parseFloat(inputList[2].value) ?? 0,
+            _val4 = parseFloat(inputList[3].value) ?? 0;
+
+      window.ipc.send("execute", { val1: _val1, val2: _val2, val3: _val3, val4: _val4 });
+    }
+  </script>
 </html>
