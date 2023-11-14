@@ -7,8 +7,8 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 350,
-    height: 380,
+    width: 340,
+    height: 390,
     resizable: false,
     fullscreen: false,
     fullscreenable: false,
@@ -95,4 +95,6 @@ ipcMain.on("execute", async (event, arg) => {
   });
 
   await workbook.xlsx.writeFile(destFilePath);
+
+  mainWindow.webContents.send("file-saved", {path: dir, name: "수정본__" + name + ext});
 });

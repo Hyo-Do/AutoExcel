@@ -37,17 +37,23 @@
       <div class="execute-row">
         <button class="execute-btn" onclick="editExcel()">실행</button>
       </div>
+      <div class="footer">입력란을 빠짐없이 기입한 뒤 실행 버튼을 클릭하세요</div>
     </div>
   </body>
   <script>
     function editExcel() {
       const inputList = document.getElementsByClassName("number-input");
       const _val1 = parseFloat(inputList[0].value) ?? 0,
-            _val2 = parseFloat(inputList[1].value) ?? 0,
-            _val3 = parseFloat(inputList[2].value) ?? 0,
-            _val4 = parseFloat(inputList[3].value) ?? 0;
+        _val2 = parseFloat(inputList[1].value) ?? 0,
+        _val3 = parseFloat(inputList[2].value) ?? 0,
+        _val4 = parseFloat(inputList[3].value) ?? 0;
 
       window.ipc.send("execute", { val1: _val1, val2: _val2, val3: _val3, val4: _val4 });
+
+      window.ipc.on("file-saved", (data) => {
+        document.getElementsByClassName("footer")[0].innerHTML = `파일이 저장되었습니다. (경로 : ${data.path})`;
+        console.log(data)
+      });
     }
   </script>
 </html>
