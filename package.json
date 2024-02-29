@@ -2,10 +2,11 @@
   "name": "auto-excel",
   "version": "1.0.0",
   "description": "엑셀 문서작업 부분 자동화 프로그램",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "electron main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "electron-builder"
   },
   "repository": {
     "type": "git",
@@ -19,8 +20,26 @@
   },
   "homepage": "https://github.com/Hyo-Do/AutoExcel#readme",
   "dependencies": {
-    "electron": "^27.0.4",
     "exceljs": "^4.4.0",
     "fs": "0.0.1-security"
+  },
+  "devDependencies": {
+    "electron": "^27.0.4",
+    "electron-builder": "^24.6.4"
+  },
+  "build": {
+    "appId": "com.hyo.auto-excel",
+    "files": [
+      "**/*",
+      "!node_modules/**/*",
+      "!src/renderer/**/*",
+      "!test/**/*"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "portable"
+    }
   }
 }
