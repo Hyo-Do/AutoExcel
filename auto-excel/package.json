@@ -1,5 +1,5 @@
 {
-  "name": "autoexcel",
+  "name": "auto-excel",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,11 +16,17 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "main": "public/electron/main.js",
+  "homepage": "./",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start": "tsc ./public/electron/main.ts && concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
+    "build": "npm run react-build && electron-builder",
+    "release": "npm run react-build && electron-builder --publish=always",
+    "lint": "eslint './src**/*.{ts,tsx}'"
   },
   "eslintConfig": {
     "extends": [
