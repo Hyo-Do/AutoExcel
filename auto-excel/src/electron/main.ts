@@ -1,13 +1,14 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
+import { openFile } from "./handler";
 
 const isDev = !app.isPackaged;
 let mainWindow: BrowserWindow;
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
-    width: 900,
-    height: 680,
+    width: 500,
+    height: 700,
     center: true,
     resizable: true,
     fullscreen: false,
@@ -15,9 +16,13 @@ const createWindow = () => {
     webPreferences: {
       nodeIntegration: true,
       devTools: isDev,
+      preload: isDev
+      ? path.join(__dirname, "../../src/electron/preload.js")
+      : path.join(__dirname, "../../build/electron/preload.js"),
     },
     autoHideMenuBar: true,
     title: "Auto Excel - 엑셀 자동화 프로그램",
+    
   });
 
   // production에서는 패키지 내부 리소스(file://...)에 접근
@@ -43,3 +48,5 @@ app.on("activate", () => {
     createWindow();
   }
 });
+
+ipcMain.on("open-file", () => openFile());

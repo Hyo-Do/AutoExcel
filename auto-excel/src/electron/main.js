@@ -2,19 +2,23 @@
 exports.__esModule = true;
 var electron_1 = require("electron");
 var path = require("path");
+var handler_1 = require("./handler");
 var isDev = !electron_1.app.isPackaged;
 var mainWindow;
 var createWindow = function () {
     mainWindow = new electron_1.BrowserWindow({
-        width: 900,
-        height: 680,
+        width: 500,
+        height: 700,
         center: true,
         resizable: true,
         fullscreen: false,
         fullscreenable: true,
         webPreferences: {
             nodeIntegration: true,
-            devTools: isDev
+            devTools: isDev,
+            preload: isDev
+                ? path.join(__dirname, "../../src/electron/preload.js")
+                : path.join(__dirname, "../../build/electron/preload.js")
         },
         autoHideMenuBar: true,
         title: "Auto Excel - 엑셀 자동화 프로그램"
@@ -39,3 +43,4 @@ electron_1.app.on("activate", function () {
         createWindow();
     }
 });
+electron_1.ipcMain.on("open-file", function () { return (0, handler_1.openFile)(); });

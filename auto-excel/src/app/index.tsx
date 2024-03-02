@@ -1,5 +1,13 @@
+import FileSelector from "./components/FileSelector";
+
 const App = () => {
-    return <div>home</div>;
+
+
+  return (
+    <div>
+        <FileSelector />
+    </div>
+  );
 };
 
 export default App;
