@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { Btn, DropArea, DropAreaHint, DropZone } from "./styles";
 
-const FileSelector = ({ setFilePath }: { setFilePath: any }) => {
+interface FileSelectorProps {
+  setFilePath: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const FileSelector = ({ setFilePath }: FileSelectorProps) => {
   const [dragging, setDragging] = useState<boolean>(false);
 
   const handerDrag = (e: React.DragEvent<HTMLDivElement>, type: "enter" | "leave" | "over") => {

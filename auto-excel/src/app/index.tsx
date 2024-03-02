@@ -12,7 +12,7 @@ const App = () => {
         <HeaderTitle>엑셀 자동화</HeaderTitle>
         <HeaderSubTitle>v24.03.02</HeaderSubTitle>
       </Header>
-      {filePath === "" ? <FileSelector setFilePath={setFilePath} /> : <FileBox filePath={filePath} />}
+      {filePath === "" ? <FileSelector setFilePath={setFilePath} /> : <FileBox filePath={filePath} setFilePath={setFilePath} />}
     </Body>
   );
 };

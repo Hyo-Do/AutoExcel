@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const Body = styled.div`
-  margin: 0 10px;
+  margin: 0 14px;
 `;
 
 export const Header = styled.div`
-  margin-bottom: 8px;
+  margin-bottom: 5px;
   display: flex;
   align-items: end;
   user-select: none;
