@@ -8,7 +8,7 @@ let mainWindow: BrowserWindow;
 const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 500,
-    height: 700,
+    height: 680,
     center: true,
     resizable: true,
     fullscreen: false,
@@ -20,7 +20,6 @@ const createWindow = () => {
       devTools: isDev,
       preload: path.join(__dirname, isDev ? "../../src/electron/preload.js" : "../../build/electron/preload.js"),
     },
-    autoHideMenuBar: true,
     title: "Auto Excel - 엑셀 자동화 프로그램",
   });
 
@@ -29,6 +28,8 @@ const createWindow = () => {
   mainWindow.loadURL(isDev ? "http://localhost:3000" : `file://${path.join(__dirname, "../build/index.html")}`);
   if (isDev) mainWindow.webContents.openDevTools({ mode: "detach" });
 
+  mainWindow.setMenu(null);
+  mainWindow.setMinimumSize(400, 580);
   mainWindow.setResizable(true);
   mainWindow.on("closed", () => (mainWindow = undefined!));
   mainWindow.focus();

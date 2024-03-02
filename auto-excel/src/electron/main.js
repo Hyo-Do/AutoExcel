@@ -8,7 +8,7 @@ var mainWindow;
 var createWindow = function () {
     mainWindow = new electron_1.BrowserWindow({
         width: 500,
-        height: 700,
+        height: 680,
         center: true,
         resizable: true,
         fullscreen: false,
@@ -20,7 +20,6 @@ var createWindow = function () {
             devTools: isDev,
             preload: path.join(__dirname, isDev ? "../../src/electron/preload.js" : "../../build/electron/preload.js")
         },
-        autoHideMenuBar: true,
         title: "Auto Excel - 엑셀 자동화 프로그램"
     });
     // production에서는 패키지 내부 리소스(file://...)에 접근
@@ -28,6 +27,8 @@ var createWindow = function () {
     mainWindow.loadURL(isDev ? "http://localhost:3000" : "file://".concat(path.join(__dirname, "../build/index.html")));
     if (isDev)
         mainWindow.webContents.openDevTools({ mode: "detach" });
+    mainWindow.setMenu(null);
+    mainWindow.setMinimumSize(400, 580);
     mainWindow.setResizable(true);
     mainWindow.on("closed", function () { return (mainWindow = undefined); });
     mainWindow.focus();
