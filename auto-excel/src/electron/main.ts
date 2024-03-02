@@ -16,6 +16,8 @@ const createWindow = () => {
       nodeIntegration: true,
       devTools: isDev,
     },
+    autoHideMenuBar: true,
+    title: "Auto Excel - 엑셀 자동화 프로그램",
   });
 
   // production에서는 패키지 내부 리소스(file://...)에 접근
