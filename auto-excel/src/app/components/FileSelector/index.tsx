@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Btn, DropArea } from "./styles";
+import { Btn, DropArea, DropAreaHint, DropZone } from "./styles";
 
 const FileSelector = () => {
   const [dragging, setDragging] = useState<boolean>(false);
@@ -22,14 +22,12 @@ const FileSelector = () => {
   };
 
   return (
-    <DropArea
-      onDragEnter={handleDragEnter}
-      onDragLeave={handleDragLeave}
-      onDragOver={handleDragOver}
-      onDrop={handleDrop}
-      $dragging={dragging}
-    >
-      <Btn onClick={() => window.ipc.send("open-file")}>실행</Btn>
+    <DropArea $dragging={dragging}>
+      <DropZone onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onDragOver={handleDragOver} onDrop={handleDrop} />
+      <DropAreaHint>이곳에 파일을 드래그하여 첨부할 수 있습니다.</DropAreaHint>
+      <Btn $dragging={dragging} onClick={() => window.ipc.send("open-file")}>
+        파일 가져오기
+      </Btn>
     </DropArea>
   );
 };

@@ -8,6 +8,7 @@ export const Header = styled.div`
   margin-bottom: 8px;
   display: flex;
   align-items: end;
+  user-select: none;
 `;
 
 export const HeaderTitle = styled.div`
