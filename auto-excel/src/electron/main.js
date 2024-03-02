@@ -14,11 +14,11 @@ var createWindow = function () {
         fullscreen: false,
         fullscreenable: true,
         webPreferences: {
-            nodeIntegration: true,
+            sandbox: false,
+            nodeIntegration: false,
+            contextIsolation: true,
             devTools: isDev,
-            preload: isDev
-                ? path.join(__dirname, "../../src/electron/preload.js")
-                : path.join(__dirname, "../../build/electron/preload.js")
+            preload: path.join(__dirname, isDev ? "../../src/electron/preload.js" : "../../build/electron/preload.js")
         },
         autoHideMenuBar: true,
         title: "Auto Excel - 엑셀 자동화 프로그램"

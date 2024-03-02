@@ -1,16 +1,24 @@
 import styled from "styled-components";
 
-export const Btn = styled.div`
-  background-color: #333;
-  color: white;
-  padding: 11px 0;
-  text-align: center;
-  border-radius: 14px;
-  width: 80px;
-  user-select: none;
+export const Body = styled.div`
+  margin: 0 10px;
+`;
 
-  &:hover {
-    background-color: #444;
-    cursor: pointer;
-  }
+export const Header = styled.div`
+  margin-bottom: 8px;
+  display: flex;
+  align-items: end;
+`;
+
+export const HeaderTitle = styled.div`
+  font-size: 50px;
+  font-weight: 700;
+  letter-spacing: -3.5px;
+`;
+
+export const HeaderSubTitle = styled.div`
+  margin: 0 0 5px 5px;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -1.4px;
 `;

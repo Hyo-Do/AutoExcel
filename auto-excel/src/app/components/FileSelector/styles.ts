@@ -5,9 +5,10 @@ type DropAreaProps = {
 };
 
 export const DropArea = styled.div<DropAreaProps>`
-  background-color: #888;
   height: 60px;
-  border: 2px dashed ${(props) => props.$dragging ? "blue" : "gray"};
+  border-radius: 8px;
+  background-color: ${(props) => props.$dragging ? "#f2f7ff" : "#c3cddb15"};
+  border: 1.8px dashed ${(props) => props.$dragging ? "#328ee0" : "#c3cddb"};
 `;
 
 export const Btn = styled.div`
