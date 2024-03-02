@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const BoxWrapper = styled.div`
-  height: 80px;
+  height: 84px;
   padding: 7px 12px;
   position: relative;
 
@@ -29,10 +29,11 @@ export const Header = styled.div`
 export const FileName = styled.div`
   width: 83%;
   color: #222;
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 700;
   letter-spacing: -0.2px;
   line-height: 18px;
+  margin-bottom: 1px;
 `;
 
 export const FilePath = styled.div`

@@ -8,7 +8,7 @@ let mainWindow: BrowserWindow;
 const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 500,
-    height: 680,
+    height: 600,
     center: true,
     resizable: true,
     fullscreen: false,
@@ -29,7 +29,7 @@ const createWindow = () => {
   if (isDev) mainWindow.webContents.openDevTools({ mode: "detach" });
 
   mainWindow.setMenu(null);
-  mainWindow.setMinimumSize(400, 580);
+  mainWindow.setMinimumSize(430, 580);
   mainWindow.setResizable(true);
   mainWindow.on("closed", () => (mainWindow = undefined!));
   mainWindow.focus();

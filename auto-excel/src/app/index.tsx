@@ -2,6 +2,8 @@ import { useState } from "react";
 import FileSelector from "./components/FileSelector";
 import { Body, Header, HeaderSubTitle, HeaderTitle } from "./styles";
 import FileBox from "./components/FileBox";
+import InputBox from "./components/InputBox";
+import BottomBox from "./components/BottomBox";
 
 const App = () => {
   const [filePath, setFilePath] = useState<string>("");
@@ -13,6 +15,8 @@ const App = () => {
         <HeaderSubTitle>v24.03.02</HeaderSubTitle>
       </Header>
       {filePath === "" ? <FileSelector setFilePath={setFilePath} /> : <FileBox filePath={filePath} setFilePath={setFilePath} />}
+      <InputBox/>
+      <BottomBox/>
     </Body>
   );
 };

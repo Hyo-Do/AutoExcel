@@ -5,7 +5,7 @@ type DropAreaProps = {
 };
 
 export const DropArea = styled.div<DropAreaProps>`
-  height: 80px;
+  height: 84px;
   padding: 7px 12px;
   position: relative;
 
@@ -27,11 +27,18 @@ export const DropZone = styled.div`
   z-index: 2;
 `;
 
+export const DropAreaHint = styled.div`
+  margin-top: 1px;
+  margin-bottom: 6px;
+  color: #b3bdcb;
+  font-size: 14px;
+  letter-spacing: -0.4px;
+`;
+
 export const Btn = styled.div<DropAreaProps>`
   display: inline-block;
-  margin: 5px 0;
-  padding: 8px 14px;
-  border-radius: 10px;
+  padding: 6px 12px;
+  border-radius: 8px;
   user-select: none;
   z-index: ${(props) => (props.$dragging ? "1" : "3")};
 
@@ -39,16 +46,10 @@ export const Btn = styled.div<DropAreaProps>`
   background-color: ${(props) => (props.$dragging ? "#e5e7eb" : "#333")};
   text-align: center;
   letter-spacing: -0.2px;
-  font-size: 13.5px;
+  font-size: 13px;
 
   &:hover {
     background-color: #444;
     cursor: pointer;
   }
-`;
-
-export const DropAreaHint = styled.div`
-  color: #11111160;
-  font-size: 14px;
-  letter-spacing: -0.2px;
 `;

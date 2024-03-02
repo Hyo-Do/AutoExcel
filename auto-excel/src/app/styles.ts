@@ -5,7 +5,7 @@ export const Body = styled.div`
 `;
 
 export const Header = styled.div`
-  margin: 0 0 6px 4px;
+  margin: 2px 0 10px 4px;
   display: flex;
   align-items: end;
   user-select: none;
