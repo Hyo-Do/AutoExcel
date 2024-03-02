@@ -12,10 +12,10 @@ const InputBox = () => {
           <InputSymbol>{e[0]}</InputSymbol>
           <InputLabel>{e[1]}</InputLabel>
           <InputForm/>
-          <NumBtn>+1</NumBtn>
-          <NumBtn>+5</NumBtn>
-          <NumBtn>-1</NumBtn>
-          <NumBtn>-5</NumBtn>
+          <NumBtn>+ 1</NumBtn>
+          <NumBtn>+ 5</NumBtn>
+          <NumBtn>- 1</NumBtn>
+          <NumBtn>- 5</NumBtn>
         </InputRow>
       ))}
       <Divider />
@@ -28,10 +28,10 @@ const InputBox = () => {
             <InputSymbol>{e[0]}</InputSymbol>
           <InputLabel>{e[1]}</InputLabel>
           <InputForm/>
-          <NumBtn>+0.1</NumBtn>
-          <NumBtn>+0.5</NumBtn>
-          <NumBtn>-0.1</NumBtn>
-          <NumBtn>-0.5</NumBtn>
+          <NumBtn>+ 0.1</NumBtn>
+          <NumBtn>+ 0.5</NumBtn>
+          <NumBtn>- 0.1</NumBtn>
+          <NumBtn>- 0.5</NumBtn>
         </InputRow>
       ))}
     </BoxWrapper>

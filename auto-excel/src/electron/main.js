@@ -7,7 +7,7 @@ var isDev = !electron_1.app.isPackaged;
 var mainWindow;
 var createWindow = function () {
     mainWindow = new electron_1.BrowserWindow({
-        width: 500,
+        width: 450,
         height: 600,
         center: true,
         resizable: true,

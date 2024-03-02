@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const BoxWrapper = styled.div`
-  margin-top: 9px;
+  margin-top: 12px;
   display: flex;
   justify-content: end;
   gap: 8px;

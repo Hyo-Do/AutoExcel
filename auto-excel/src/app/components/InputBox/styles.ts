@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const BoxWrapper = styled.div`
   padding: 8px 1% 10px 2%;
   position: relative;
-  margin-top: 9px;
+  margin-top: 10px;
 
   border-radius: 8px;
   border: 1.5px solid #11111115;
@@ -39,8 +39,8 @@ export const InputLabel = styled.div`
 
 export const InputForm = styled.input.attrs({ type: "text" })`
   height: 100%;
-  width: 28%;
-  /* margin-right: 1px; */
+  width: 25%;
+  margin-right: 2px;
   border: 0;
   border-radius: 12px;
   background-color: #f3f5f7;
@@ -48,7 +48,7 @@ export const InputForm = styled.input.attrs({ type: "text" })`
 
 export const NumBtn = styled.div`
   height: 30px;
-  width: 38px;
+  width: 37px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,7 +57,7 @@ export const NumBtn = styled.div`
   border: 1px solid #646a6e33;
   color: #646a6e;
   font-size: 13.5px;
-  letter-spacing: -0.2px;
+  letter-spacing: -1px;
 
   &:hover {
     background-color: #646a6e12;
