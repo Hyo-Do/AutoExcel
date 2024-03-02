@@ -22,11 +22,11 @@ var createWindow = function () {
             preload: path.join(__dirname, isDev ? "../../public/electron/preload.js" : "../../build/electron/preload.js")
         },
         title: "Auto Excel - 엑셀 자동화 프로그램",
-        icon: path.join(__dirname, "../../public/favicon.ico")
+        icon: path.join(__dirname, isDev ? "../../public/favicon.ico" : "../../build/favicon.ico")
     });
     // production에서는 패키지 내부 리소스(file://...)에 접근
     // 개발 중에는 개발 도구에서 호스팅하는 주소(localhost:3000)에서 로드
-    mainWindow.loadURL(isDev ? "http://localhost:3000" : "file://".concat(path.join(__dirname, "../build/index.html")));
+    mainWindow.loadURL(isDev ? "http://localhost:3000" : "file://".concat(path.join(__dirname, "../../build/index.html")));
     if (isDev)
         mainWindow.webContents.openDevTools({ mode: "detach" });
     mainWindow.setMenu(null);

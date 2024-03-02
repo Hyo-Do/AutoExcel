@@ -1,3 +1,4 @@
+import ExcelLogoSvg from "../../assets/ExcelLogoSvg";
 import { BoxWrapper, CloseBtn, ExcelLogo, FileName, FilePath, Header } from "./styles";
 
 interface FileBoxProps {
@@ -10,7 +11,7 @@ const FileBox = ({ filePath, setFilePath }: FileBoxProps) => {
     <BoxWrapper>
       <Header>
         <ExcelLogo>
-          <img src="/excel_logo.svg" alt="excel-logo" />
+          <ExcelLogoSvg />
         </ExcelLogo>
         <FileName>{filePath.split("\\").slice(-1)}</FileName>
         <CloseBtn onClick={() => setFilePath("")} />

@@ -11,10 +11,10 @@ const App = () => {
   const [filePath, setFilePath] = useState<string>("");
   const [inputData, setInputData] = useState<InputData>({
     minV: 615.0,
-    maxV: 625.0,
+    maxV: 620.0,
     deltaV: 1.0,
-    minA: 1.5,
-    maxA: 2.5,
+    minA: 1.6,
+    maxA: 2.1,
     deltaA: 0.1,
   });
 
