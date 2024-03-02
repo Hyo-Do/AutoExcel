@@ -15,8 +15,8 @@ const App = () => {
         <HeaderSubTitle>v24.03.02</HeaderSubTitle>
       </Header>
       {filePath === "" ? <FileSelector setFilePath={setFilePath} /> : <FileBox filePath={filePath} setFilePath={setFilePath} />}
-      <InputBox/>
-      <BottomBox/>
+      <InputBox />
+      <BottomBox filePath={filePath} />
     </Body>
   );
 };

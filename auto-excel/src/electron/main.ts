@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
 import { openFile } from "./handler";
+import editExcel from "./edit_excel";
 
 const isDev = !app.isPackaged;
 let mainWindow: BrowserWindow;
@@ -50,3 +51,5 @@ app.on("activate", () => {
 });
 
 ipcMain.on("open-file", () => openFile(mainWindow));
+ipcMain.on("edit-excel", (e, data) => editExcel(mainWindow, data));
+
