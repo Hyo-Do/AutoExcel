@@ -1,6 +1,6 @@
-import { dialog } from 'electron';
+import { BrowserWindow, dialog } from 'electron';
 
-export function openFile() {
+export function openFile(mainWindow: BrowserWindow) {
     dialog.showOpenDialog({
         properties: ['openFile'],
         filters: [
@@ -8,16 +8,9 @@ export function openFile() {
             { name: '모든 파일', extensions: ['*'] }
         ]
     }).then(result => {
-        if (!result.canceled) {
-            const filePath = result.filePaths[0];
-            excelProcessing(filePath);
-        }
+        if (result.canceled || result.filePaths.length < 1) return;
+        mainWindow.webContents.send("open-file-end", result.filePaths[0])
     }).catch(err => {
         console.error('파일 선택 오류:', err);
     });
-}
-
-
-function excelProcessing(filePath: string) {
-    console.log(filePath);
 }

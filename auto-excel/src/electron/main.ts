@@ -48,4 +48,4 @@ app.on("activate", () => {
   }
 });
 
-ipcMain.on("open-file", () => openFile());
+ipcMain.on("open-file", () => openFile(mainWindow));

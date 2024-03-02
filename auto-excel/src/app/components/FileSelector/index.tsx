@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Btn, DropArea, DropAreaHint, DropZone } from "./styles";
 
-const FileSelector = () => {
+const FileSelector = ({ setFilePath }: { setFilePath: any }) => {
   const [dragging, setDragging] = useState<boolean>(false);
 
   const handerDrag = (e: React.DragEvent<HTMLDivElement>, type: "enter" | "leave" | "over") => {
@@ -16,10 +16,18 @@ const FileSelector = () => {
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => handerDrag(e, "over");
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     handerDrag(e, "leave");
-
     const files = Array.from(e.dataTransfer.files);
-    console.log(files);
+    console.log(files[0]);
+    setFilePath(files.length > 0 ? files[0].path : "");
   };
+
+  useEffect(() => {
+    window.ipc.on("open-file-end", (data: any) => {
+      setFilePath(data);
+    });
+    return () => window.ipc.offAll("open-file-end");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <DropArea $dragging={dragging}>

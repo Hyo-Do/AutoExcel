@@ -43,4 +43,4 @@ electron_1.app.on("activate", function () {
         createWindow();
     }
 });
-electron_1.ipcMain.on("open-file", function () { return (0, handler_1.openFile)(); });
+electron_1.ipcMain.on("open-file", function () { return (0, handler_1.openFile)(mainWindow); });
