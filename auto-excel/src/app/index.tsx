@@ -5,6 +5,7 @@ import FileBox from "./components/FileBox";
 import InputBox from "./components/InputBox";
 import BottomBox from "./components/BottomBox";
 import { InputData } from "./interfaces/inputData";
+import StatusBar from "./components/StatusBar";
 
 const App = () => {
   const [filePath, setFilePath] = useState<string>("");
@@ -26,6 +27,7 @@ const App = () => {
       {filePath === "" ? <FileSelector setFilePath={setFilePath} /> : <FileBox filePath={filePath} setFilePath={setFilePath} />}
       <InputBox inputData={inputData} setInputData={setInputData} />
       <BottomBox filePath={filePath} inputData={inputData} />
+      <StatusBar />
     </Body>
   );
 };
