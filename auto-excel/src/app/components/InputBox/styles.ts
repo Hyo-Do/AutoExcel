@@ -9,9 +9,10 @@ export const BoxWrapper = styled.div`
   border: 1.5px solid #11111115;
 `;
 
-export const InputRow = styled.div`
+export const RowWrapper = styled.div`
   padding: 2.5px 8px;
   height: 35px;
+  user-select: none;
 
   display: flex;
   align-items: center;
@@ -37,9 +38,10 @@ export const InputLabel = styled.div`
   letter-spacing: -0.3px;
 `;
 
-export const InputForm = styled.input.attrs({ type: "text" })`
+export const InputForm = styled.input.attrs({ type: "number" })`
   height: 100%;
-  width: 25%;
+  width: 19%;
+  padding: 0 12px;
   margin-right: 2px;
   border: 0;
   border-radius: 12px;
@@ -47,20 +49,22 @@ export const InputForm = styled.input.attrs({ type: "text" })`
 `;
 
 export const NumBtn = styled.div`
-  height: 30px;
-  width: 37px;
+  height: 32px;
+  width: 38px;
   display: flex;
   justify-content: center;
   align-items: center;
   
   border-radius: 8px;
   border: 1px solid #646a6e33;
-  color: #646a6e;
-  font-size: 13.5px;
+  color: #444a4e;
+  font-size: 14px;
   letter-spacing: -1px;
 
   &:hover {
     background-color: #646a6e12;
+    color: #111;
+    font-weight: 600;
     cursor: pointer;
   }
 `;

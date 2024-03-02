@@ -1,38 +1,22 @@
-import { BoxWrapper, Divider, InputForm, InputLabel, InputRow, InputSymbol, NumBtn } from "./styles";
+import { InputData } from "../../interfaces/inputData";
+import { BoxWrapper, Divider } from "./styles";
+import inputFormData from "../../constants/inputFormData";
+import InputRow from "./InputRow";
 
-const InputBox = () => {
+interface InputBoxProps {
+  inputData: InputData;
+  setInputData: React.Dispatch<React.SetStateAction<InputData>>;
+}
+
+const InputBox = ({ inputData, setInputData }: InputBoxProps) => {
   return (
     <BoxWrapper>
-      {[
-        ["+V", "최대 전압", ""],
-        ["-V", "최소 전압", ""],
-        ["ΔV", "전압 차이", ""],
-      ].map((e) => (
-        <InputRow>
-          <InputSymbol>{e[0]}</InputSymbol>
-          <InputLabel>{e[1]}</InputLabel>
-          <InputForm/>
-          <NumBtn>+ 1</NumBtn>
-          <NumBtn>+ 5</NumBtn>
-          <NumBtn>- 1</NumBtn>
-          <NumBtn>- 5</NumBtn>
-        </InputRow>
+      {inputFormData.slice(0, 3).map((e, i) => (
+        <InputRow key={i} id={e.id} symbol={e.symbol} label={e.label} inputData={inputData} setInputData={setInputData} />
       ))}
       <Divider />
-      {[
-          ["+A","최대 전류", ""],
-          ["-A","최소 전류", ""],
-          ["ΔA","전압 차이", ""],
-        ].map((e) => (
-            <InputRow>
-            <InputSymbol>{e[0]}</InputSymbol>
-          <InputLabel>{e[1]}</InputLabel>
-          <InputForm/>
-          <NumBtn>+ 0.1</NumBtn>
-          <NumBtn>+ 0.5</NumBtn>
-          <NumBtn>- 0.1</NumBtn>
-          <NumBtn>- 0.5</NumBtn>
-        </InputRow>
+      {inputFormData.slice(3, 6).map((e, i) => (
+        <InputRow key={i} id={e.id} symbol={e.symbol} label={e.label} inputData={inputData} setInputData={setInputData} />
       ))}
     </BoxWrapper>
   );

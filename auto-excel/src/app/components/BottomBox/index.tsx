@@ -1,17 +1,18 @@
+import { InputData } from "../../interfaces/inputData";
 import { BoxWrapper, OptionBtn, RunBtn } from "./styles";
 
 interface BottomBoxProps {
   filePath: string;
+  inputData: InputData;
 }
 
-const BottomBox = ({ filePath }: BottomBoxProps) => {
+const BottomBox = ({ filePath, inputData }: BottomBoxProps) => {
   return (
     <BoxWrapper>
       <OptionBtn>초기화</OptionBtn>
       <RunBtn
         onClick={() => {
-          if (filePath !== "") window.ipc.send("edit-excel", filePath);
-        //   if (filePath !== "") editExcel(filePath);
+          if (filePath !== "") window.ipc.send("edit-excel", { path: filePath, data: inputData });
         }}
       >
         실행

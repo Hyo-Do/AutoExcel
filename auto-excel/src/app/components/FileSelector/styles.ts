@@ -8,12 +8,13 @@ export const DropArea = styled.div<DropAreaProps>`
   height: 84px;
   padding: 7px 12px;
   position: relative;
-
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 10;
+  user-select: none;
   
   border-radius: 8px;
   background-color: ${(props) => (props.$dragging ? "#f2f7ff" : "#c3cddb15")};
@@ -39,7 +40,6 @@ export const Btn = styled.div<DropAreaProps>`
   display: inline-block;
   padding: 6px 12px;
   border-radius: 8px;
-  user-select: none;
   z-index: ${(props) => (props.$dragging ? "1" : "3")};
 
   color: ${(props) => (props.$dragging ? "#9ca3af" : "white")};
