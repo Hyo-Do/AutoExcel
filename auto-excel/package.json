@@ -20,14 +20,14 @@
     "xlsx": "^0.18.5",
     "xlsx-populate": "^1.21.0"
   },
-  "main": "src/electron/main.js",
+  "main": "public/electron/main.js",
   "homepage": "./",
   "scripts": {
     "react-start": "react-scripts start",
     "react-build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "tsc ./src/electron/main.ts && concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
+    "start": "tsc ./public/electron/main.ts && concurrently \"cross-env BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",
     "build": "npm run react-build && electron-builder",
     "release": "npm run react-build && electron-builder --publish=always",
     "lint": "eslint './src**/*.{ts,tsx}'"

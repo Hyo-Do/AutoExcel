@@ -19,9 +19,10 @@ const createWindow = () => {
       nodeIntegration: false,
       contextIsolation: true,
       devTools: isDev,
-      preload: path.join(__dirname, isDev ? "../../src/electron/preload.js" : "../../build/electron/preload.js"),
+      preload: path.join(__dirname, isDev ? "../../public/electron/preload.js" : "../../build/electron/preload.js"),
     },
     title: "Auto Excel - 엑셀 자동화 프로그램",
+    icon: path.join(__dirname, "../../public/favicon.ico"),
   });
 
   // production에서는 패키지 내부 리소스(file://...)에 접근

@@ -1,5 +1,5 @@
 import { BrowserWindow } from "electron";
-import { InputData } from "../app/interfaces/inputData";
+import { InputData } from "../../src/interfaces/inputData";
 
 const getRandomValue = (min: number, max: number, interval: number): number => {
   const randomFloat = Math.random() * (max - min) + min;
