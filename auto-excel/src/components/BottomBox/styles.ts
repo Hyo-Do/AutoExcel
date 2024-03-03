@@ -19,19 +19,24 @@ const Btn = styled.div`
   user-select: none;
   text-align: center;
   letter-spacing: -0.2px;
-  font-size: 15px;
+  font-size: 15.5px;
 
   &:hover {
     cursor: pointer;
   }
 `;
 
-export const RunBtn = styled(Btn)`
-  background-color: #333;
-  color: white;
+type RunBtnProps = {
+  $active: boolean;
+};
+
+export const RunBtn = styled(Btn)<RunBtnProps>`
+  border: ${(props) => (props.$active ? "0" : "1px solid #646a6e10")};
+  background-color: ${(props) => (props.$active ? "#333" : "#eaecee")};
+  color: ${(props) => (props.$active ? "#fff" : "#999")};
 
   &:hover {
-    background-color: #444;
+    background-color: ${(props) => (props.$active ? "#444" : "#eaecee")};
   }
 `;
 

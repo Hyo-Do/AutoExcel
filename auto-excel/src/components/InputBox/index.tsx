@@ -24,9 +24,13 @@ const InputBox = ({ mode, inputData, setMode, setInputData }: InputBoxProps) => 
           maxA: parseFloat((parseFloat(data.sheetValues[1]) + 0.2).toFixed(1)),
         }));
       } else if (data.mode === 1) {
+        console.log(data);
         setInputData((_data: any) => ({
           ..._data,
-          values: data.sheetValues,
+          values: data.sheetValues.map((val: any) => [
+            parseFloat((parseFloat(val) - 0.1).toFixed(1)),
+            parseFloat((parseFloat(val) + 0.1).toFixed(1)),
+          ]),
           names: data.sheetNames,
         }));
       }
@@ -47,9 +51,11 @@ const InputBox = ({ mode, inputData, setMode, setInputData }: InputBoxProps) => 
     </BoxWrapper>
   ) : (
     <BoxWrapper>
-      {inputData.values.map((e: any, i: number) => (
-        <InputRowA key={i} idx={i} inputData={inputData} setInputData={setInputData} />
-      ))}
+      <div style={{overflowY: "auto", maxHeight: "200px"}}>
+        {inputData.values.map((e: any, i: number) => (
+          <InputRowA key={i} idx={i} inputData={inputData} setInputData={setInputData} />
+        ))}
+      </div>
       <Divider />
       {inputFormData.slice(5).map((e, i) => (
         <InputRow key={i} id={e.id} symbol={e.symbol} label={e.label} inputData={inputData} setInputData={setInputData} />

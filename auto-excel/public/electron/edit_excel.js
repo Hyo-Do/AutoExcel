@@ -108,65 +108,32 @@ var editExcelNewMode = function (mainWindow, data) {
 var editExcelOldMode = function (mainWindow, data) {
     var newFilePath = data.path.replace(".xlsx", "_편집본.xlsx");
     XlsxPopulate.fromFileAsync(data.path).then(function (workbook) { return __awaiter(void 0, void 0, void 0, function () {
-        var sheetCnt, sheet, rows, active, cnt, _a, _b, _c, _i, i, num, error_2;
-        return __generator(this, function (_d) {
-            switch (_d.label) {
+        var sheetCnt_1, cnt, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
-                    _d.trys.push([0, 8, , 9]);
-                    sheetCnt = 0;
+                    _a.trys.push([0, 2, , 3]);
+                    console.log(data.data);
+                    sheetCnt_1 = 0;
+                    cnt = 0;
                     workbook.sheets().forEach(function (sheet) {
                         console.log("Sheet Name:", sheet.name());
+                        sheetCnt_1++;
                     });
-                    sheet = workbook.sheet("월간점검DC체크리스트");
-                    rows = sheet.usedRange().value();
-                    active = false;
-                    cnt = 0;
-                    _a = rows;
-                    _b = [];
-                    for (_c in _a)
-                        _b.push(_c);
-                    _i = 0;
-                    _d.label = 1;
+                    return [4 /*yield*/, workbook.toFileAsync(newFilePath)];
                 case 1:
-                    if (!(_i < _b.length)) return [3 /*break*/, 6];
-                    _c = _b[_i];
-                    if (!(_c in _a)) return [3 /*break*/, 5];
-                    i = _c;
-                    if (rows[i][9] === "전압" && rows[i][10] === "전류" && rows[i][11] === "이상유무") {
-                        active = true;
-                        return [3 /*break*/, 5];
-                    }
-                    if (!active) return [3 /*break*/, 5];
-                    if (!!rows[i][9]) return [3 /*break*/, 2];
-                    active = false;
-                    return [3 /*break*/, 5];
-                case 2:
-                    num = parseInt(i) + 1;
-                    return [4 /*yield*/, sheet.cell("J".concat(num)).value(getRandomValue(data.data.minV, data.data.maxV, data.data.deltaV))];
-                case 3:
-                    _d.sent();
-                    return [4 /*yield*/, sheet.cell("K".concat(num)).value(getRandomValue(data.data.minA, data.data.maxA, data.data.deltaA))];
-                case 4:
-                    _d.sent();
-                    cnt++;
-                    _d.label = 5;
-                case 5:
-                    _i++;
-                    return [3 /*break*/, 1];
-                case 6: return [4 /*yield*/, workbook.toFileAsync(newFilePath)];
-                case 7:
-                    _d.sent();
+                    _a.sent();
                     mainWindow.webContents.send("edit-excel-end", {
-                        sheetCnt: sheetCnt,
+                        sheetCnt: sheetCnt_1,
                         rowCnt: "-",
                         cellCnt: cnt * 2
                     });
-                    return [3 /*break*/, 9];
-                case 8:
-                    error_2 = _d.sent();
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_2 = _a.sent();
                     console.error("Error editing Excel:", error_2);
-                    return [3 /*break*/, 9];
-                case 9: return [2 /*return*/];
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     }); });

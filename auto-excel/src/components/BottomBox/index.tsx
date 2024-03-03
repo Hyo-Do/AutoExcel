@@ -20,6 +20,7 @@ const BottomBox = ({ mode, filePath, inputData }: BottomBoxProps) => {
     <BoxWrapper>
       <OptionBtn>초기화</OptionBtn>
       <RunBtn
+        $active={filePath !== ""}
         onClick={() => {
           if (filePath !== "") window.ipc.send("edit-excel", { path: filePath, data: inputData, mode: mode });
         }}

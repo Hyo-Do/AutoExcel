@@ -115,9 +115,12 @@ export const InputALabel = styled.div`
 `;
 
 export const InputASubLabel = styled.div`
-  margin: 0px 2px 4px 5px;
-  color: #343a3f;
-  font-size: 14.5px;
+  width: 9%;
+  margin-bottom: 4px;
+  padding-right: 3px;
+  color: #a4aaaf;
+  text-align: right;
   font-weight: 400;
+  font-size: 15px;
   letter-spacing: -1px;
 `;
