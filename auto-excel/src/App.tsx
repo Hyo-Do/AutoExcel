@@ -4,19 +4,20 @@ import { Body, Header, HeaderSubTitle, HeaderTitle } from "./styles";
 import FileBox from "./components/FileBox";
 import InputBox from "./components/InputBox";
 import BottomBox from "./components/BottomBox";
-import { InputData } from "./interfaces/inputData";
 import TabBox from "./components/TabBox";
 
 const App = () => {
   const [mode, setMode] = useState<number>(0);
   const [filePath, setFilePath] = useState<string>("");
-  const [inputData, setInputData] = useState<InputData>({
+  const [inputData, setInputData] = useState<any>({
     minV: 615.0,
     maxV: 620.0,
-    deltaV: 1.0,
     minA: 1.6,
     maxA: 2.1,
+    deltaV: 1.0,
     deltaA: 0.1,
+    values: [],
+    names: [],
   });
 
   return (
@@ -27,7 +28,7 @@ const App = () => {
       </Header>
       {filePath === "" ? <FileSelector setFilePath={setFilePath} /> : <FileBox filePath={filePath} setFilePath={setFilePath} />}
       <TabBox mode={mode} setMode={setMode} />
-      <InputBox mode={mode} inputData={inputData} setInputData={setInputData} />
+      <InputBox mode={mode} inputData={inputData} setMode={setMode} setInputData={setInputData} />
       <BottomBox mode={mode} filePath={filePath} inputData={inputData} />
     </Body>
   );

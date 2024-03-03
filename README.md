@@ -56,9 +56,9 @@ const editExcel = async (mainWindow: BrowserWindow, filePath: string) => {
   XlsxPopulate.fromFileAsync(filePath).then((workbook: any) => {
     // read cell
     workbook.sheet("월간점검DC체크리스트").cell("J9").value("새값인디");
-    console.log(value);
     // write cell
     const value = workbook.sheet("월간점검DC체크리스트").cell("J9").value();
+    console.log(value);
 
     return workbook.toFileAsync(newFilePath);
   });

@@ -21,12 +21,14 @@ const FileSelector = ({ setFilePath }: FileSelectorProps) => {
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     handerDrag(e, "leave");
     const files = Array.from(e.dataTransfer.files);
-    console.log(files[0]);
-    setFilePath(files.length > 0 ? files[0].path : "");
+    if (files.length < 1) return;
+    window.ipc.send("read-excel", files[0].path);
+    setFilePath(files[0].path);
   };
-
+  
   useEffect(() => {
     window.ipc.on("open-file-end", (data: any) => {
+      window.ipc.send("read-excel", data);
       setFilePath(data);
     });
     return () => window.ipc.offAll("open-file-end");

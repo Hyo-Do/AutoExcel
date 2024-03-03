@@ -1,28 +1,57 @@
-import { InputData } from "../../interfaces/inputData";
-import { BoxWrapper, Divider, NullSection } from "./styles";
+import { BoxWrapper, Divider } from "./styles";
 import inputFormData from "../../constants/inputFormData";
 import InputRow from "./InputRow";
+import { useEffect } from "react";
+import InputRowA from "./InputRowA";
 
 interface InputBoxProps {
   mode: number;
-  inputData: InputData;
-  setInputData: React.Dispatch<React.SetStateAction<InputData>>;
+  inputData: any;
+  setMode: React.Dispatch<React.SetStateAction<number>>;
+  setInputData: React.Dispatch<React.SetStateAction<any>>;
 }
 
-const InputBox = ({ mode, inputData, setInputData }: InputBoxProps) => {
-  return (
+const InputBox = ({ mode, inputData, setMode, setInputData }: InputBoxProps) => {
+  useEffect(() => {
+    window.ipc.on("read-excel-end", (data: any) => {
+      setMode(data.mode);
+      if (data.mode === 0) {
+        setInputData((_data: any) => ({
+          ..._data,
+          minV: parseInt(data.sheetValues[0]) - 1,
+          maxV: parseInt(data.sheetValues[0]) + 2,
+          minA: (parseFloat(data.sheetValues[1]) - 0.1).toFixed(1),
+          maxA: (parseFloat(data.sheetValues[1]) + 0.2).toFixed(1),
+        }));
+      } else if (data.mode === 1) {
+        setInputData((_data: any) => ({
+          ..._data,
+          values: data.sheetValues,
+          names: data.sheetNames,
+        }));
+      }
+    });
+    return () => window.ipc.offAll("read-excel-end");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return mode === 0 ? (
     <BoxWrapper>
-      {mode === 0 ? (
-        inputFormData
-          .slice(0, 3)
-          .map((e, i) => <InputRow key={i} id={e.id} symbol={e.symbol} label={e.label} inputData={inputData} setInputData={setInputData} />)
-      ) : (
-        <NullSection>
-          현재 모드에서는 지원하지 않는 입력란입니다.
-        </NullSection>
-      )}
+      {inputFormData.slice(0, 3).map((e, i) => (
+        <InputRow key={i} id={e.id} symbol={e.symbol} label={e.label} inputData={inputData} setInputData={setInputData} />
+      ))}
       <Divider />
       {inputFormData.slice(3, 6).map((e, i) => (
+        <InputRow key={i} id={e.id} symbol={e.symbol} label={e.label} inputData={inputData} setInputData={setInputData} />
+      ))}
+    </BoxWrapper>
+  ) : (
+    <BoxWrapper>
+      {inputData.values.map((e: any, i: number) => (
+        <InputRowA key={i} idx={i} inputData={inputData} setInputData={setInputData} />
+      ))}
+      <Divider />
+      {inputFormData.slice(5).map((e, i) => (
         <InputRow key={i} id={e.id} symbol={e.symbol} label={e.label} inputData={inputData} setInputData={setInputData} />
       ))}
     </BoxWrapper>

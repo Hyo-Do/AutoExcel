@@ -4,6 +4,7 @@ var electron_1 = require("electron");
 var path = require("path");
 var handler_1 = require("./handler");
 var edit_excel_1 = require("./edit_excel");
+var read_excel_1 = require("./read_excel");
 var isDev = !electron_1.app.isPackaged;
 var mainWindow;
 var createWindow = function () {
@@ -47,4 +48,5 @@ electron_1.app.on("activate", function () {
     }
 });
 electron_1.ipcMain.on("open-file", function () { return (0, handler_1.openFile)(mainWindow); });
+electron_1.ipcMain.on("read-excel", function (e, data) { return (0, read_excel_1.readExcel)(mainWindow, data); });
 electron_1.ipcMain.on("edit-excel", function (e, data) { return (0, edit_excel_1["default"])(mainWindow, data); });

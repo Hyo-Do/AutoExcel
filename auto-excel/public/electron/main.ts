@@ -2,6 +2,7 @@ import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
 import { openFile } from "./handler";
 import editExcel from "./edit_excel";
+import { readExcel } from "./read_excel";
 
 const isDev = !app.isPackaged;
 let mainWindow: BrowserWindow;
@@ -52,5 +53,6 @@ app.on("activate", () => {
 });
 
 ipcMain.on("open-file", () => openFile(mainWindow));
+ipcMain.on("read-excel", (e, data) => readExcel(mainWindow, data));
 ipcMain.on("edit-excel", (e, data) => editExcel(mainWindow, data));
 

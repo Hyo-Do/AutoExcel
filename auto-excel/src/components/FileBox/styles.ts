@@ -7,7 +7,7 @@ export const BoxWrapper = styled.div`
 
   border-radius: 8px;
   background-color: #f3f5f7;
-  border: 1px solid #11111110;
+  border: 1.5px solid #11111110;
 `;
 
 export const ExcelLogo = styled.div`

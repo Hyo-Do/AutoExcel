@@ -90,3 +90,34 @@ export const NullSection = styled.div`
   letter-spacing: -0.6px;
   font-size: 14px;
 `;
+
+/**
+ * InputRowA
+ */
+
+export const InputASymbol = styled.div`
+  width: 3%;
+  margin-bottom: 4px;
+  color: #646a6e;
+  font-size: 16px;
+  font-weight: 900;
+  text-align: right;
+  padding-right: 1%;
+`;
+
+export const InputALabel = styled.div`
+  width: 24%;
+  margin-bottom: 4px;
+  color: #646a6f;
+  font-size: 15.5px;
+  font-weight: 400;
+  letter-spacing: -0.3px;
+`;
+
+export const InputASubLabel = styled.div`
+  margin: 0px 2px 4px 5px;
+  color: #343a3f;
+  font-size: 14.5px;
+  font-weight: 400;
+  letter-spacing: -1px;
+`;

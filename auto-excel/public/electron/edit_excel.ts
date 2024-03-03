@@ -1,5 +1,4 @@
 import { BrowserWindow } from "electron";
-import { InputData } from "../../src/interfaces/inputData";
 
 const getRandomValue = (min: number, max: number, interval: number): number => {
   const randomFloat = Math.random() * (max - min) + min;
@@ -9,24 +8,9 @@ const getRandomValue = (min: number, max: number, interval: number): number => {
   return randomValue;
 };
 
-// const showSuccessPopup = (mainWindow: BrowserWindow, cnt: number) => {
-//   const { x, y, width, height } = mainWindow.getBounds();
-//   const alertX = x + width / 2;
-//   const alertY = y + height / 2;
-
-//   dialog.showMessageBox(mainWindow, {
-//     type: "info",
-//     title: "자동 편집 완료",
-//     message: `정상적으로 엑셀 편집을 완료했습니다.\n수정한 행 합계 : ${cnt} (개)`,
-//     buttons: ["확인"],
-//     x: alertX,
-//     y: alertY,
-//   });
-// };
-
 const XlsxPopulate = require("xlsx-populate");
 
-const editExcelNewMode = (mainWindow: BrowserWindow, data: { path: string; data: InputData; mode: number }) => {
+const editExcelNewMode = (mainWindow: BrowserWindow, data: { path: string; data: any; mode: number }) => {
   const newFilePath = data.path.replace(".xlsx", "_편집본.xlsx");
   XlsxPopulate.fromFileAsync(data.path).then(async (workbook: any) => {
     try {
@@ -52,18 +36,27 @@ const editExcelNewMode = (mainWindow: BrowserWindow, data: { path: string; data:
       }
 
       await workbook.toFileAsync(newFilePath);
-      mainWindow.webContents.send("edit-excel-end", cnt);
-      // showSuccessPopup(mainWindow, cnt);
+      mainWindow.webContents.send("edit-excel-end", {
+        sheetCnt: 1,
+        rowCnt: cnt,
+        cellCnt: cnt * 2,
+      });
     } catch (error) {
       console.error("Error editing Excel:", error);
     }
   });
 };
 
-const editExcelOldMode = (mainWindow: BrowserWindow, data: { path: string; data: InputData; mode: number }) => {
+const editExcelOldMode = (mainWindow: BrowserWindow, data: { path: string; data: any; mode: number }) => {
   const newFilePath = data.path.replace(".xlsx", "_편집본.xlsx");
   XlsxPopulate.fromFileAsync(data.path).then(async (workbook: any) => {
     try {
+      let sheetCnt: number = 0;
+      workbook.sheets().forEach((sheet: any) => {
+        console.log("Sheet Name:", sheet.name());
+        
+      });
+    
       const sheet = workbook.sheet("월간점검DC체크리스트");
       const rows = sheet.usedRange().value();
       let active: boolean = false;
@@ -86,7 +79,11 @@ const editExcelOldMode = (mainWindow: BrowserWindow, data: { path: string; data:
       }
 
       await workbook.toFileAsync(newFilePath);
-      mainWindow.webContents.send("edit-excel-end", cnt);
+      mainWindow.webContents.send("edit-excel-end", {
+        sheetCnt: sheetCnt,
+        rowCnt: "-",
+        cellCnt: cnt * 2,
+      });
       // showSuccessPopup(mainWindow, cnt);
     } catch (error) {
       console.error("Error editing Excel:", error);
@@ -94,7 +91,7 @@ const editExcelOldMode = (mainWindow: BrowserWindow, data: { path: string; data:
   });
 };
 
-const editExcel = async (mainWindow: BrowserWindow, data: { path: string; data: InputData; mode: number }) => {
+const editExcel = async (mainWindow: BrowserWindow, data: { path: string; data: any; mode: number }) => {
   if (data.mode === 0) editExcelNewMode(mainWindow, data);
   else if (data.mode === 1) editExcelOldMode(mainWindow, data);
 };

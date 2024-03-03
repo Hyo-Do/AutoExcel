@@ -18,12 +18,12 @@ export const DropArea = styled.div<DropAreaProps>`
   
   border-radius: 8px;
   background-color: ${(props) => (props.$dragging ? "#f2f7ff" : "#c3cddb15")};
-  border: 1.8px dashed ${(props) => (props.$dragging ? "#328ee0" : "#c3cddb")};
+  border: 1.5px dashed ${(props) => (props.$dragging ? "#328ee0" : "#c3cddb")};
 `;
 
 export const DropZone = styled.div`
-  height: 100%;
-  width: 100%;
+  height: 99%;
+  width: 99%;
   position: absolute;
   z-index: 2;
 `;
