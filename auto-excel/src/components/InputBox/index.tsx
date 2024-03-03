@@ -20,8 +20,8 @@ const InputBox = ({ mode, inputData, setMode, setInputData }: InputBoxProps) => 
           ..._data,
           minV: parseInt(data.sheetValues[0]) - 1,
           maxV: parseInt(data.sheetValues[0]) + 2,
-          minA: (parseFloat(data.sheetValues[1]) - 0.1).toFixed(1),
-          maxA: (parseFloat(data.sheetValues[1]) + 0.2).toFixed(1),
+          minA: parseFloat((parseFloat(data.sheetValues[1]) - 0.1).toFixed(1)),
+          maxA: parseFloat((parseFloat(data.sheetValues[1]) + 0.2).toFixed(1)),
         }));
       } else if (data.mode === 1) {
         setInputData((_data: any) => ({
