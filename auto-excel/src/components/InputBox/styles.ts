@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const BoxWrapper = styled.div`
+  /* margin-top: 10px; */
   padding: 8px 1% 10px 2%;
   position: relative;
-  margin-top: 10px;
 
   border-radius: 8px;
   border: 1.5px solid #11111115;
@@ -40,31 +40,36 @@ export const InputLabel = styled.div`
 
 export const InputForm = styled.input.attrs({ type: "number" })`
   height: 100%;
-  width: 19%;
+  width: 17%;
   padding: 0 12px;
   margin-right: 2px;
   border: 0;
   border-radius: 12px;
   background-color: #f3f5f7;
+
+  letter-spacing: -0.5px;
+  font-size: 15.5px;
+  font-weight: 500;
 `;
 
 export const NumBtn = styled.div`
   height: 32px;
-  width: 38px;
+  width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   
   border-radius: 8px;
   border: 1px solid #646a6e33;
-  color: #444a4e;
-  font-size: 14px;
+  color: #444a4e99;
+  font-size: 14.5px;
+  font-weight: 600;
   letter-spacing: -1px;
-
+  
   &:hover {
-    background-color: #646a6e12;
+    background-color: #646a6e15;
     color: #111;
-    font-weight: 600;
+    font-weight: 800;
     cursor: pointer;
   }
 `;
@@ -73,4 +78,15 @@ export const Divider = styled.div`
   margin: 10px 2% 8px 6px;
   height: 1.5px;
   background-color: #646a6e20;
+`;
+
+export const NullSection = styled.div`
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #444a4e66;
+  letter-spacing: -0.6px;
+  font-size: 14px;
 `;

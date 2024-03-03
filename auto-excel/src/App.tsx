@@ -5,9 +5,10 @@ import FileBox from "./components/FileBox";
 import InputBox from "./components/InputBox";
 import BottomBox from "./components/BottomBox";
 import { InputData } from "./interfaces/inputData";
-import StatusBar from "./components/StatusBar";
+import TabBox from "./components/TabBox";
 
 const App = () => {
+  const [mode, setMode] = useState<number>(0);
   const [filePath, setFilePath] = useState<string>("");
   const [inputData, setInputData] = useState<InputData>({
     minV: 615.0,
@@ -22,12 +23,12 @@ const App = () => {
     <Body>
       <Header>
         <HeaderTitle>엑셀 자동화</HeaderTitle>
-        <HeaderSubTitle>v24.03.02</HeaderSubTitle>
+        <HeaderSubTitle>v24.03.03</HeaderSubTitle>
       </Header>
       {filePath === "" ? <FileSelector setFilePath={setFilePath} /> : <FileBox filePath={filePath} setFilePath={setFilePath} />}
-      <InputBox inputData={inputData} setInputData={setInputData} />
-      <BottomBox filePath={filePath} inputData={inputData} />
-      <StatusBar />
+      <TabBox mode={mode} setMode={setMode} />
+      <InputBox mode={mode} inputData={inputData} setInputData={setInputData} />
+      <BottomBox mode={mode} filePath={filePath} inputData={inputData} />
     </Body>
   );
 };

@@ -26,7 +26,7 @@ const getRandomValue = (min: number, max: number, interval: number): number => {
 
 const XlsxPopulate = require("xlsx-populate");
 
-const editExcel = async (mainWindow: BrowserWindow, data: { path: string; data: InputData }) => {
+const editExcelNewMode = (mainWindow: BrowserWindow, data: { path: string; data: InputData; mode: number }) => {
   const newFilePath = data.path.replace(".xlsx", "_편집본.xlsx");
   XlsxPopulate.fromFileAsync(data.path).then(async (workbook: any) => {
     try {
@@ -58,6 +58,45 @@ const editExcel = async (mainWindow: BrowserWindow, data: { path: string; data: 
       console.error("Error editing Excel:", error);
     }
   });
+};
+
+const editExcelOldMode = (mainWindow: BrowserWindow, data: { path: string; data: InputData; mode: number }) => {
+  const newFilePath = data.path.replace(".xlsx", "_편집본.xlsx");
+  XlsxPopulate.fromFileAsync(data.path).then(async (workbook: any) => {
+    try {
+      const sheet = workbook.sheet("월간점검DC체크리스트");
+      const rows = sheet.usedRange().value();
+      let active: boolean = false;
+      let cnt: number = 0;
+      for (const i in rows) {
+        if (rows[i][9] === "전압" && rows[i][10] === "전류" && rows[i][11] === "이상유무") {
+          active = true;
+          continue;
+        }
+        if (active) {
+          if (!rows[i][9]) {
+            active = false;
+          } else {
+            const num = parseInt(i) + 1;
+            await sheet.cell(`J${num}`).value(getRandomValue(data.data.minV, data.data.maxV, data.data.deltaV));
+            await sheet.cell(`K${num}`).value(getRandomValue(data.data.minA, data.data.maxA, data.data.deltaA));
+            cnt++;
+          }
+        }
+      }
+
+      await workbook.toFileAsync(newFilePath);
+      mainWindow.webContents.send("edit-excel-end", cnt);
+      // showSuccessPopup(mainWindow, cnt);
+    } catch (error) {
+      console.error("Error editing Excel:", error);
+    }
+  });
+};
+
+const editExcel = async (mainWindow: BrowserWindow, data: { path: string; data: InputData; mode: number }) => {
+  if (data.mode === 0) editExcelNewMode(mainWindow, data);
+  else if (data.mode === 1) editExcelOldMode(mainWindow, data);
 };
 
 export default editExcel;

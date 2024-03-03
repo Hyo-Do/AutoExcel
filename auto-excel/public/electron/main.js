@@ -9,7 +9,7 @@ var mainWindow;
 var createWindow = function () {
     mainWindow = new electron_1.BrowserWindow({
         width: 450,
-        height: 600,
+        height: 660,
         center: true,
         resizable: true,
         fullscreen: false,
@@ -30,7 +30,7 @@ var createWindow = function () {
     if (isDev)
         mainWindow.webContents.openDevTools({ mode: "detach" });
     mainWindow.setMenu(null);
-    mainWindow.setMinimumSize(430, 580);
+    mainWindow.setMinimumSize(430, 620);
     mainWindow.setResizable(true);
     mainWindow.on("closed", function () { return (mainWindow = undefined); });
     mainWindow.focus();

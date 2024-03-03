@@ -33,7 +33,7 @@ export const DropAreaHint = styled.div`
   margin-bottom: 6px;
   color: #b3bdcb;
   font-size: 14px;
-  letter-spacing: -0.4px;
+  letter-spacing: -0.6px;
 `;
 
 export const Btn = styled.div<DropAreaProps>`

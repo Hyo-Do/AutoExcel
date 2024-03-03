@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const BoxWrapper = styled.div`
+  position: absolute;
+  bottom: 14px;
+  width: 94%;
+
   margin-top: 12px;
   display: flex;
   justify-content: end;
