@@ -108,25 +108,53 @@ var editExcelNewMode = function (mainWindow, data) {
 var editExcelOldMode = function (mainWindow, data) {
     var newFilePath = data.path.replace(".xlsx", "_편집본.xlsx");
     XlsxPopulate.fromFileAsync(data.path).then(function (workbook) { return __awaiter(void 0, void 0, void 0, function () {
-        var sheetCnt_1, cnt, error_2;
+        var sheetIdx_1, cnt_1, error_2;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    console.log(data.data);
-                    sheetCnt_1 = 0;
-                    cnt = 0;
+                    sheetIdx_1 = 0;
+                    cnt_1 = 0;
                     workbook.sheets().forEach(function (sheet) {
-                        console.log("Sheet Name:", sheet.name());
-                        sheetCnt_1++;
+                        var scanRowIdx = 60;
+                        if (sheet.cell(scanRowIdx, 3).value() !== "□ 접속함 (체널별 전류)") {
+                            // 표의 시작인덱스가 60이 아닐때 추가 처리
+                            console.log("[WARNING] 표 시작위치가 예상과 다르게 인식됨!");
+                        }
+                        scanRowIdx++;
+                        // 헤더 총 개수 구하기 (headerCnt)
+                        var headerCnt = 0;
+                        var scanColIdx = 9;
+                        for (var loopCnt = 0; loopCnt < 100; loopCnt++) {
+                            if (sheet.cell(scanRowIdx, scanColIdx).value() === undefined)
+                                break;
+                            scanColIdx += 2;
+                            headerCnt++;
+                        }
+                        scanRowIdx++;
+                        for (var loopCnt = 0; loopCnt < 100; loopCnt++) {
+                            // console.log(sheet.cell(scanRowIdx, 3).value());
+                            if (sheet.cell(scanRowIdx, 3).value() === undefined)
+                                break;
+                            for (var colIdx = 0; colIdx < headerCnt; colIdx++) {
+                                var targetValue = sheet.cell(scanRowIdx, 9 + colIdx * 2).value();
+                                if (targetValue === undefined)
+                                    continue;
+                                var newValue = getRandomValue(data.data.values[sheetIdx_1][0], data.data.values[sheetIdx_1][1], data.data.deltaA);
+                                sheet.cell(scanRowIdx, 9 + colIdx * 2).value(newValue);
+                                cnt_1++;
+                            }
+                            scanRowIdx++;
+                        }
+                        sheetIdx_1++;
                     });
                     return [4 /*yield*/, workbook.toFileAsync(newFilePath)];
                 case 1:
                     _a.sent();
                     mainWindow.webContents.send("edit-excel-end", {
-                        sheetCnt: sheetCnt_1,
-                        rowCnt: "-",
-                        cellCnt: cnt * 2
+                        sheetCnt: sheetIdx_1,
+                        rowCnt: 0,
+                        cellCnt: cnt_1
                     });
                     return [3 /*break*/, 3];
                 case 2:

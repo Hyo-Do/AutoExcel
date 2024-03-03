@@ -51,19 +51,47 @@ const editExcelOldMode = (mainWindow: BrowserWindow, data: { path: string; data:
   const newFilePath = data.path.replace(".xlsx", "_편집본.xlsx");
   XlsxPopulate.fromFileAsync(data.path).then(async (workbook: any) => {
     try {
-      console.log(data.data);
-      let sheetCnt: number = 0;
+      let sheetIdx: number = 0;
       let cnt: number = 0;
       workbook.sheets().forEach((sheet: any) => {
-        console.log("Sheet Name:", sheet.name());
-        sheetCnt++;
+        let scanRowIdx = 60;
+        if (sheet.cell(scanRowIdx, 3).value() !== "□ 접속함 (체널별 전류)") {
+          // 표의 시작인덱스가 60이 아닐때 추가 처리
+          console.log("[WARNING] 표 시작위치가 예상과 다르게 인식됨!");
+        }
+        scanRowIdx++;
+
+        // 헤더 총 개수 구하기 (headerCnt)
+        let headerCnt = 0;
+        let scanColIdx = 9;
+        for (let loopCnt = 0; loopCnt < 100; loopCnt++) {
+          if (sheet.cell(scanRowIdx, scanColIdx).value() === undefined) break;
+          scanColIdx += 2;
+          headerCnt++;
+        }
+        scanRowIdx++;
+
+        for (let loopCnt = 0; loopCnt < 100; loopCnt++) {
+          // console.log(sheet.cell(scanRowIdx, 3).value());
+          if (sheet.cell(scanRowIdx, 3).value() === undefined) break;
+          for (let colIdx = 0; colIdx < headerCnt; colIdx++) {
+            const targetValue = sheet.cell(scanRowIdx, 9 + colIdx * 2).value();
+            if (targetValue === undefined) continue;
+            const newValue = getRandomValue(data.data.values[sheetIdx][0], data.data.values[sheetIdx][1], data.data.deltaA);
+            sheet.cell(scanRowIdx, 9 + colIdx * 2).value(newValue);
+            cnt++;
+          }
+          scanRowIdx++;
+        }
+
+        sheetIdx++;
       });
 
       await workbook.toFileAsync(newFilePath);
       mainWindow.webContents.send("edit-excel-end", {
-        sheetCnt: sheetCnt,
-        rowCnt: "-",
-        cellCnt: cnt * 2,
+        sheetCnt: sheetIdx,
+        rowCnt: 0,
+        cellCnt: cnt,
       });
       // showSuccessPopup(mainWindow, cnt);
     } catch (error) {

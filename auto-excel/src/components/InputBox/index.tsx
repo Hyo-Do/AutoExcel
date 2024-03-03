@@ -24,7 +24,6 @@ const InputBox = ({ mode, inputData, setMode, setInputData }: InputBoxProps) => 
           maxA: parseFloat((parseFloat(data.sheetValues[1]) + 0.2).toFixed(1)),
         }));
       } else if (data.mode === 1) {
-        console.log(data);
         setInputData((_data: any) => ({
           ..._data,
           values: data.sheetValues.map((val: any) => [
