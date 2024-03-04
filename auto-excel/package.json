@@ -47,7 +47,7 @@
     },
     "extends": null,
     "win": {
-      "icon": "build/favicon.ico"
+      "icon": "build/icon.png"
     }
   },
   "eslintConfig": {
