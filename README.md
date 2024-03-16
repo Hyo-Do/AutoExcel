@@ -1,5 +1,7 @@
 # AutoExcel - 엑셀 자동화
 
+![image](https://github.com/Hyo-Do/AutoExcel/assets/48408417/dbba0772-1d53-44af-be3b-7a5cb0e70972)
+
 엑셀의 반복되는 작업들을 자동화하는 프로그램을 개발
 
 ## Trouble Shooting
