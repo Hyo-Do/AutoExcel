@@ -5,7 +5,7 @@ export const FileFormBox = styled.div`
   padding: 9px 4px;
 
   border: 0;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #d3d3d3;
 `;
 
 export const FileFormTitle = styled.div`
@@ -17,16 +17,16 @@ export const FileFormTitle = styled.div`
 `;
 
 export const NullStateBox = styled.div`
-  height: 50px;
+  height: 55px;
   width: calc(100% + 8px);
-  margin: 5px 0 2px -4px;
+  margin: 5px 0 1px -4px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   border: 1px dashed #ccc;
-  border-radius: 10px;
+  border-radius: 8px;
 
   color: #aaa;
 `;

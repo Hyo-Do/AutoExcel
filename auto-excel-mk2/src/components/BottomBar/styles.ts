@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const BtmBtnBox = styled.div`
   position: absolute;
-  bottom: 12px;
+  bottom: 11px;
   width: calc(100% - 30px);
   padding: 0 15px;
 
@@ -15,7 +15,7 @@ const BtmBtn = styled.div`
   display: inline-block;
   width: 49%;
   padding: 11px 0;
-  border-radius: 12px;
+  border-radius: 8px;
   user-select: none;
   text-align: center;
   letter-spacing: -0.2px;

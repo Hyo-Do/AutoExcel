@@ -6,16 +6,16 @@ export const TitleBox = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: 36px;
+  font-size: 35px;
   font-weight: 600;
   letter-spacing: -1.5px;
 `;
 
 export const SubTitle = styled.div`
-  margin: -4px 0 18px 0;
+  margin-top: -5px;
 
   font-size: 20px;
   font-weight: 300;
   letter-spacing: -0.8px;
-  color: #555;
+  color: #444;
 `;

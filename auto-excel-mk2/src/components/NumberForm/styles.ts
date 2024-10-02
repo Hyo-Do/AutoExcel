@@ -5,7 +5,7 @@ export const NumberFormBox = styled.div`
   padding: 9px 4px;
 
   border: 0;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #d3d3d3;
 
   display: flex;
   justify-content: space-between;
@@ -36,11 +36,13 @@ export const MinusBtn = styled(NumberBtn)`
 `;
 
 export const LabelBox = styled.div`
-  min-width: 100px;
-  padding-bottom: 1px;
+  height: 50px;
+  min-width: 110px;
+
   display: flex;
   flex-direction: column;
-  /* gap: 2px; */
+  justify-content: center;
+  /* gap: 1px; */
 
   user-select: none;
 `;
@@ -48,11 +50,11 @@ export const LabelBox = styled.div`
 export const LabelTitle = styled.div`
   font-size: 19px;
   font-weight: 500;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.6px;
 `;
 
 export const LabelSubTitle = styled.div`
-  margin-left: 2px;
+  margin-left: 1px;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: -0.2px;
@@ -64,12 +66,21 @@ export const NumberInput = styled.input`
   width: 50px;
   font-size: 28px;
   text-align: center;
-
-  padding: 8.5px 16px 7.5px 16px;
+  
+  padding: 8px 16px 7px 16px;
   border-radius: 20px;
-  border: 0;
-  /* border: 1px solid #eee; */
-  /* background-color: #f4f6f7; */
-
+  border: 1px solid #fff;
+  
   cursor: pointer;
+  
+  &:hover {
+    border: 1px solid #f0f1f2;
+    background-color: #f3f5f7;
+  }
+  
+  &:focus {
+    background-color: #fff;
+    /* outline-color: #556bfc; */
+    /* outline: none; */
+  }
 `;

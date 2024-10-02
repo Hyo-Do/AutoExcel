@@ -30,7 +30,7 @@ var createWindow = function () {
     if (isDev)
         mainWindow.webContents.openDevTools({ mode: "detach" });
     mainWindow.setMenu(null);
-    mainWindow.setSize(420, 570);
+    mainWindow.setSize(410, 570);
     mainWindow.setResizable(false);
     mainWindow.on("closed", function () { return (mainWindow = undefined); });
     mainWindow.focus();
