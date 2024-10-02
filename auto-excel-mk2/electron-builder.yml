@@ -1,0 +1,18 @@
+appId: com.duryung.auto-excel-mk2
+productName: 오토엑셀MK2
+copyright: Copyright © 2024 duryung
+mac:
+  category: public.app-category.utilities
+win:
+  target:
+    - nsis
+  # icon: dist/favicon.ico
+nsis:
+  allowToChangeInstallationDirectory: true
+  oneClick: false
+files:
+  - dist/**/* 
+  - electron/**/*
+directories:
+  buildResources: assets
+  output: dist-electron
