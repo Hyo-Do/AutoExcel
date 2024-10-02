@@ -1,7 +1,12 @@
 import styled from "styled-components";
-import { InputBox } from "../styles";
 
-export const NumberFormBox = styled(InputBox)`
+export const NumberFormBox = styled.div`
+  margin: 0 22px;
+  padding: 9px 4px;
+
+  border: 0;
+  border-top: 1px solid #ccc;
+
   display: flex;
   justify-content: space-between;
   align-items: center;

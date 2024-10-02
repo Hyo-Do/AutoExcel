@@ -1,11 +1,13 @@
-import { InputBox } from "../styles";
-import { FileFormTitle } from "./styles";
+import { FileFormBox, FileFormTitle, NullStateBox } from "./styles";
 
 const FileForm = () => {
   return (
-    <InputBox>
+    <FileFormBox>
       <FileFormTitle>선택한 파일</FileFormTitle>
-    </InputBox>
+      <NullStateBox>
+        선택된 파일 없음
+      </NullStateBox>
+    </FileFormBox>
   );
 };
 

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const TitleBox = styled.div`
-  margin: 17px 24px;
+  margin: 16px 24px;
+  user-select: none;
 `;
 
 export const Title = styled.div`
@@ -11,7 +12,7 @@ export const Title = styled.div`
 `;
 
 export const SubTitle = styled.div`
-  margin: -4px 0 19px 0;
+  margin: -4px 0 18px 0;
 
   font-size: 20px;
   font-weight: 300;
