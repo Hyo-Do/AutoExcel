@@ -1,4 +1,5 @@
-import { InputBox, Label, SubTitle, Title, TitleBox } from "./styles";
+import NumberForm from "./components/NumberForm";
+import { BtmBtnBox, CancleBtm, InputBox, Label, SubmitBtn, SubTitle, Title, TitleBox } from "./styles";
 
 function App() {
   return (
@@ -10,10 +11,12 @@ function App() {
       <InputBox>
         <Label>선택한 파일</Label>
       </InputBox>
-      <InputBox>
-      </InputBox>
-      <InputBox>
-      </InputBox>
+      <NumberForm />
+      <NumberForm />
+      <BtmBtnBox>
+        <CancleBtm>취소</CancleBtm>
+        <SubmitBtn $active={true}>실행</SubmitBtn>
+      </BtmBtnBox>
     </>
   );
 }
