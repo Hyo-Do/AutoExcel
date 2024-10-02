@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { InputBox } from "../../styles";
+import { InputBox } from "../styles";
 
 export const NumberFormBox = styled(InputBox)`
   display: flex;
@@ -9,8 +9,7 @@ export const NumberFormBox = styled(InputBox)`
 
 const NumberBtn = styled.div`
   height: 30px;
-  width: 31px;
-  padding-bottom: 1px;
+  width: 30px;
 
   display: flex;
   justify-content: center;
@@ -20,6 +19,7 @@ const NumberBtn = styled.div`
   border-radius: 999px;
 
   cursor: pointer;
+  user-select: none;
 `;
 
 export const PlusBtn = styled(NumberBtn)`
@@ -27,17 +27,15 @@ export const PlusBtn = styled(NumberBtn)`
 `;
 
 export const MinusBtn = styled(NumberBtn)`
-  height: 31px;
-  padding-bottom: 0px;
-
   font-size: 20px;
 `;
 
 export const LabelBox = styled.div`
   min-width: 100px;
+  padding-bottom: 1px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  /* gap: 2px; */
 
   user-select: none;
 `;
@@ -49,7 +47,7 @@ export const LabelTitle = styled.div`
 `;
 
 export const LabelSubTitle = styled.div`
-  margin-left: 3px;
+  margin-left: 2px;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: -0.2px;
@@ -57,12 +55,16 @@ export const LabelSubTitle = styled.div`
 `;
 
 export const NumberInput = styled.input`
+  margin-right: -10px;
   width: 50px;
   font-size: 28px;
-  text-align: right;
+  text-align: center;
 
-  padding: 8px 16px 7px 16px;
-  border: 1px solid #eee;
+  padding: 8.5px 16px 7.5px 16px;
   border-radius: 20px;
-  background-color: #f4f6f7;
+  border: 0;
+  /* border: 1px solid #eee; */
+  /* background-color: #f4f6f7; */
+
+  cursor: pointer;
 `;

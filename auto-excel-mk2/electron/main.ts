@@ -32,8 +32,8 @@ const createWindow = () => {
   if (isDev) mainWindow.webContents.openDevTools({ mode: "detach" });
 
   mainWindow.setMenu(null);
-  mainWindow.setSize(400, 550);
-  mainWindow.setResizable(true);
+  mainWindow.setSize(420, 560);
+  mainWindow.setResizable(false);
   mainWindow.on("closed", () => (mainWindow = undefined!));
   mainWindow.focus();
 };
