@@ -54,74 +54,105 @@ var editExcel = function (mainWindow, data) {
         ["W", "X"],
     ];
     XlsxPopulate.fromFileAsync(data.path).then(function (workbook) { return __awaiter(void 0, void 0, void 0, function () {
-        var sheet, rows, activeRow, activeCol, cnt, _a, _b, _c, _i, i, j, rowNum, j, v, a, error_1;
+        var sheet, rows_1, activeRow, activeCol, cnt, _loop_1, _a, _b, _c, _i, i, error_1;
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0:
-                    _d.trys.push([0, 11, , 12]);
+                    _d.trys.push([0, 6, , 7]);
                     sheet = workbook.sheet("접속반 점검일지");
-                    rows = sheet.usedRange().value();
+                    rows_1 = sheet.usedRange().value();
                     activeRow = false;
                     activeCol = 0;
                     cnt = 0;
-                    _a = rows;
+                    _loop_1 = function (i) {
+                        var j, rowNum, _loop_2, j;
+                        return __generator(this, function (_e) {
+                            switch (_e.label) {
+                                case 0:
+                                    if (!(rows_1[i][1] === "Array")) return [3 /*break*/, 1];
+                                    activeRow = true;
+                                    for (j = 2; j < rows_1[i].length; j += 4) {
+                                        if (rows_1[i][j] === "전압" && rows_1[i][j + 1] === "전류")
+                                            activeCol++;
+                                        else
+                                            break;
+                                    }
+                                    return [3 /*break*/, 6];
+                                case 1:
+                                    if (!activeRow) return [3 /*break*/, 6];
+                                    if (!!rows_1[i][1]) return [3 /*break*/, 2];
+                                    activeRow = false;
+                                    activeCol = 0;
+                                    return [3 /*break*/, 6];
+                                case 2:
+                                    rowNum = parseInt(i) + 1;
+                                    _loop_2 = function (j) {
+                                        var v, a;
+                                        return __generator(this, function (_f) {
+                                            switch (_f.label) {
+                                                case 0:
+                                                    v = getRandomValue(data.data[2], data.data[3], 1);
+                                                    a = getRandomValue(data.data[0], data.data[1], 0.1);
+                                                    if (!rows_1[i][2 + j * 4]) return [3 /*break*/, 2];
+                                                    return [4 /*yield*/, sheet.cell("".concat(cols[j][0]).concat(rowNum)).value(v)];
+                                                case 1:
+                                                    _f.sent();
+                                                    _f.label = 2;
+                                                case 2:
+                                                    if (!rows_1[i][3 + j * 4]) return [3 /*break*/, 4];
+                                                    return [4 /*yield*/, sheet.cell("".concat(cols[j][1]).concat(rowNum)).value(a)];
+                                                case 3:
+                                                    _f.sent();
+                                                    _f.label = 4;
+                                                case 4:
+                                                    cnt += [2, 3].filter(function (val) { return rows_1[i][val + j * 4] !== undefined; }).length;
+                                                    return [2 /*return*/];
+                                            }
+                                        });
+                                    };
+                                    j = 0;
+                                    _e.label = 3;
+                                case 3:
+                                    if (!(j < activeCol)) return [3 /*break*/, 6];
+                                    return [5 /*yield**/, _loop_2(j)];
+                                case 4:
+                                    _e.sent();
+                                    _e.label = 5;
+                                case 5:
+                                    j++;
+                                    return [3 /*break*/, 3];
+                                case 6: return [2 /*return*/];
+                            }
+                        });
+                    };
+                    _a = rows_1;
                     _b = [];
                     for (_c in _a)
                         _b.push(_c);
                     _i = 0;
                     _d.label = 1;
                 case 1:
-                    if (!(_i < _b.length)) return [3 /*break*/, 9];
+                    if (!(_i < _b.length)) return [3 /*break*/, 4];
                     _c = _b[_i];
-                    if (!(_c in _a)) return [3 /*break*/, 8];
+                    if (!(_c in _a)) return [3 /*break*/, 3];
                     i = _c;
-                    if (!(rows[i][1] === "Array")) return [3 /*break*/, 2];
-                    activeRow = true;
-                    for (j = 2; j < rows[i].length; j += 4) {
-                        if (rows[i][j] === "전압" && rows[i][j + 1] === "전류")
-                            activeCol++;
-                        else
-                            break;
-                    }
-                    return [3 /*break*/, 8];
+                    return [5 /*yield**/, _loop_1(i)];
                 case 2:
-                    if (!activeRow) return [3 /*break*/, 8];
-                    if (!!rows[i][1]) return [3 /*break*/, 3];
-                    activeRow = false;
-                    activeCol = 0;
-                    return [3 /*break*/, 8];
+                    _d.sent();
+                    _d.label = 3;
                 case 3:
-                    rowNum = parseInt(i) + 1;
-                    j = 0;
-                    _d.label = 4;
-                case 4:
-                    if (!(j < activeCol)) return [3 /*break*/, 8];
-                    v = getRandomValue(data.data[2], data.data[3], 1);
-                    a = getRandomValue(data.data[0], data.data[1], 0.1);
-                    return [4 /*yield*/, sheet.cell("".concat(cols[j][0]).concat(rowNum)).value(v)];
-                case 5:
-                    _d.sent();
-                    return [4 /*yield*/, sheet.cell("".concat(cols[j][1]).concat(rowNum)).value(a)];
-                case 6:
-                    _d.sent();
-                    cnt += 2;
-                    _d.label = 7;
-                case 7:
-                    j++;
-                    return [3 /*break*/, 4];
-                case 8:
                     _i++;
                     return [3 /*break*/, 1];
-                case 9: return [4 /*yield*/, workbook.toFileAsync(newFilePath)];
-                case 10:
+                case 4: return [4 /*yield*/, workbook.toFileAsync(newFilePath)];
+                case 5:
                     _d.sent();
                     mainWindow.webContents.send("edit-excel-end", { cnt: cnt });
-                    return [3 /*break*/, 12];
-                case 11:
+                    return [3 /*break*/, 7];
+                case 6:
                     error_1 = _d.sent();
                     console.error("Error editing Excel:", error_1);
-                    return [3 /*break*/, 12];
-                case 12: return [2 /*return*/];
+                    return [3 /*break*/, 7];
+                case 7: return [2 /*return*/];
             }
         });
     }); });

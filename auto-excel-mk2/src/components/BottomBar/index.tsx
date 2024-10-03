@@ -12,7 +12,7 @@ const BottomBar = () => {
   };
 
   const onEditExcelEnd = (data: any) => {
-    alert(`엑셀 작업이 정상적으로 완료되었습니다.\n수정한 셀 개수: ${data?.cnt ?? 0} 개`);
+    alert(`엑셀 작업이 정상적으로 완료되었습니다.\n수정한 셀 개수: ${data?.cnt ?? 0}개`);
   };
 
   useEffect(() => {

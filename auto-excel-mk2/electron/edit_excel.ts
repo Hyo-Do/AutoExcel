@@ -34,7 +34,7 @@ const editExcel = (mainWindow: BrowserWindow, data: { path: string; data: any })
           activeRow = true;
 
           for (let j = 2; j < rows[i].length; j += 4) {
-            if (rows[i][j] === "전압" && rows[i][j+1] === "전류") activeCol++;
+            if (rows[i][j] === "전압" && rows[i][j + 1] === "전류") activeCol++;
             else break;
           }
         } else if (activeRow) {
@@ -47,9 +47,10 @@ const editExcel = (mainWindow: BrowserWindow, data: { path: string; data: any })
             for (let j = 0; j < activeCol; j++) {
               const v = getRandomValue(data.data[2], data.data[3], 1);
               const a = getRandomValue(data.data[0], data.data[1], 0.1);
-              await sheet.cell(`${cols[j][0]}${rowNum}`).value(v);
-              await sheet.cell(`${cols[j][1]}${rowNum}`).value(a);
-              cnt += 2;
+
+              if (rows[i][2 + j*4]) await sheet.cell(`${cols[j][0]}${rowNum}`).value(v);
+              if (rows[i][3 + j*4]) await sheet.cell(`${cols[j][1]}${rowNum}`).value(a);
+              cnt += [2,3].filter(val => rows[i][val + j*4] !== undefined).length;
             }
           }
         }
