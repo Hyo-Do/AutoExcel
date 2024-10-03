@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var electron_1 = require("electron");
 var path = require("path");
+var handler_1 = require("./handler");
+var read_excel_1 = require("./read_excel");
 var mainWindow;
 var isDev = process.env.IS_DEV == "true";
 var createWindow = function () {
@@ -46,3 +48,5 @@ electron_1.app.on("activate", function () {
         createWindow();
     }
 });
+electron_1.ipcMain.on("open-file", function () { return (0, handler_1.openFile)(mainWindow); });
+electron_1.ipcMain.on("read-excel", function (e, data) { return (0, read_excel_1.readExcel)(mainWindow, data); });
