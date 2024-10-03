@@ -15,7 +15,7 @@ export const SubTitle = styled.div`
   margin-top: -5px;
 
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 200;
   letter-spacing: -0.8px;
   color: #444;
 `;

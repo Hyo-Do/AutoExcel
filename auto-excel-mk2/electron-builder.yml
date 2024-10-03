@@ -1,12 +1,12 @@
 appId: com.duryung.auto-excel-mk2
-productName: 오토엑셀MK2
+productName: 엑셀자동화_솔라파워
 copyright: Copyright © 2024 duryung
 mac:
   category: public.app-category.utilities
 win:
   target:
     - nsis
-  # icon: dist/favicon.ico
+  icon: dist/favicon.ico
 nsis:
   allowToChangeInstallationDirectory: true
   oneClick: false

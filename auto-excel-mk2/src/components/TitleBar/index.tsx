@@ -4,9 +4,9 @@ const TitleBar = () => {
   return (
     <TitleBox>
       <Title>
-        Auto Excel <span style={{ color: "#666" }}>mk.2</span>
+        Auto Excel mk.2
       </Title>
-      <SubTitle>엑셀 자동화 ver. 24.10.03</SubTitle>
+      <SubTitle><span style={{fontWeight: "400"}}>솔라파워 엑셀 자동화</span> ver. 24.10.03</SubTitle>
     </TitleBox>
   );
 };

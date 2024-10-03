@@ -23,7 +23,7 @@ var createWindow = function () {
             preload: path.join(__dirname, "preload.js"),
             devTools: isDev,
         },
-        title: "타이틀 입니다",
+        icon: path.join(__dirname, "../public/favicon.ico"),
     });
     /**
      * 운영: 패키지 내부 리소스(file://...)에 접근

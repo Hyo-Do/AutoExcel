@@ -23,7 +23,7 @@ const createWindow = () => {
       preload: path.join(__dirname, "preload.js"),
       devTools: isDev,
     },
-    title: "타이틀 입니다",
+    icon: path.join(__dirname, "../public/favicon.ico"),
   });
 
   /**
