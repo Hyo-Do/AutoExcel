@@ -1,10 +1,7 @@
 # AutoExcel - 엑셀 자동화
 
 <img width=300 src="https://github.com/Hyo-Do/AutoExcel/assets/48408417/dbba0772-1d53-44af-be3b-7a5cb0e70972"/>
-v1 (auto-excel)
-
 <img width=300 src="https://github.com/user-attachments/assets/32b4e4fd-9fe6-48f7-b9b1-3fc9f4b8b899"/>
-v2 (auto-excel-mk2)
 
 엑셀의 반복되는 작업들을 자동화하는 프로그램을 개발
 
