@@ -9,10 +9,10 @@ var mainWindow;
 var isDev = process.env.IS_DEV == "true";
 var createWindow = function () {
     mainWindow = new electron_1.BrowserWindow({
-        width: 1000,
-        height: 760,
+        width: 410,
+        height: 570,
         center: true,
-        resizable: true,
+        resizable: false,
         fullscreen: false,
         fullscreenable: true,
         webPreferences: {
@@ -29,12 +29,10 @@ var createWindow = function () {
      * 운영: 패키지 내부 리소스(file://...)에 접근
      * 개발: 개발 도구에서 호스팅하는 주소(localhost:5173)에서 로드
      */
-    mainWindow.loadURL(isDev ? "http://localhost:5173" : "file://".concat(path.join(__dirname, "../build/index.html")));
+    mainWindow.loadURL(isDev ? "http://localhost:5173" : "file://".concat(path.join(__dirname, "../dist/index.html")));
     if (isDev)
         mainWindow.webContents.openDevTools({ mode: "detach" });
     mainWindow.setMenu(null);
-    mainWindow.setSize(410, 570);
-    mainWindow.setResizable(false);
     mainWindow.on("closed", function () { return (mainWindow = undefined); });
     mainWindow.focus();
 };
