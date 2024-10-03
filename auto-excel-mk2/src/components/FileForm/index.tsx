@@ -4,7 +4,7 @@ import ExcelLogoSvg from "../../assets/ExcelLogoSvg";
 import { FileContext } from "../../contexts/FileContext";
 
 const FileForm = () => {
-  const { filePath, setFilePath } = useContext(FileContext);
+  const { filePath, setFilePath, setDataList } = useContext(FileContext);
 
   const onOpenFile = () => window.ipc.send("open-file");
   const onOpenFileEnd = (data: any) => {
@@ -13,7 +13,9 @@ const FileForm = () => {
   };
 
   const onReadExcelEnd = (data: any) => {
-    console.log(data);
+    if (data && data.isOk) {
+      setDataList([Math.round((data.data.a - 0.1) * 10) / 10, Math.round((data.data.a + 0.1) * 10) / 10, data.data.v - 1, data.data.v + 1]);
+    }
   };
 
   const getFileTitle = (filePath: string) => filePath.split("\\").pop();

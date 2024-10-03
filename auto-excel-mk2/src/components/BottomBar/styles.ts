@@ -28,7 +28,7 @@ export const CancleBtm = styled(BtmBtn)`
   border: 1px solid #646a6e40;
 
   &:hover {
-    background-color: #eee;
+    background-color: #f5f7f9;
   }
 `;
 
@@ -37,11 +37,12 @@ type SubmitBtnProps = {
 };
 
 export const SubmitBtn = styled(BtmBtn)<SubmitBtnProps>`
-  border: ${(props) => (props.$active ? "0" : "1px solid #646a6e10")};
-  background-color: ${(props) => (props.$active ? "#333" : "#eaecee")};
-  color: ${(props) => (props.$active ? "#fff" : "#999")};
+  border: ${(props) => (props.$active ? "0" : "1px solid #646a6e20")};
+  background-color: ${(props) => (props.$active ? "#222" : "#eceef0")};
+  color: ${(props) => (props.$active ? "#fff" : "#888")};
+  cursor: ${(props) => (props.$active ? "pointer" : "default")};
 
   &:hover {
-    background-color: ${(props) => (props.$active ? "#444" : "#eaecee")};
+    background-color: ${(props) => (props.$active ? "#333" : "#eceef0")};
   }
 `;
