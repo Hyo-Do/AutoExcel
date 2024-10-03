@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const TitleBox = styled.div`
-  margin: 16px 24px;
+  margin: 11px 24px 12px 24px;
   user-select: none;
 `;
 
